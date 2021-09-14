@@ -1,6 +1,5 @@
 package OpenClosedPrincipleWithStrategyPattern;
 
-import javax.management.RuntimeErrorException;
 
 public class OpenClosedP {
     // Open for Extension and Closed for modification
@@ -34,20 +33,17 @@ public class OpenClosedP {
 
     public static void main(String[] args) {
 
-         TransferType type = TransferType.INTL;
+         TransferType type = TransferType.LOCAL;
          double amount = 1000000;
         
          MoneyTransferI transfer = MoneyTranferProcessorFactory.build(type);
 
-         
-
-         processMoneyTransfer(amount,  type);
-
+         transfer.transferMoney(amount);
 
     }
 
     // Both BankAccount and Intl Bank Account
-    public class BankAccount implements MoneyTransferI{
+    public static class BankAccount implements MoneyTransferI{
 
             public void transferMoney(double amount){
 
@@ -56,18 +52,18 @@ public class OpenClosedP {
             }
     }
 
-    public class IntlBankAccount implements MoneyTransferI{
+    public static class IntlBankAccount implements MoneyTransferI{
 
-        public void transferMoney(double amount){
+        public  void transferMoney(double amount){
             System.out.println("INTL Transfer Your money is successfully transferred");
         }
 
 }
 
     //Abstracting the money transfer method\functionality into a Interface-STRATEGY
-    public interface  MoneyTransferI{
+    public static interface  MoneyTransferI{
 
-        public void transferMoney(double amount);
+          void transferMoney(double amount);
 
     }
 
@@ -81,20 +77,17 @@ public class OpenClosedP {
             
             else if(type == TransferType.LOCAL){
                 return new BankAccount();
-            
-            throw new RuntimeException("Please provide the valid Transfer Type")
-
+            }
+            else {
+                throw new RuntimeException("Please provide the valid Transfer Type");
+            }
             }
         }
 
-        public void processMoneyTransfer(double amount, TransferType type){
+        public static void processMoneyTransfer(double amount, TransferType type){
 
-            MoneyTranferProcessorFactory factory = new MoneyTranferProcessorFactory();
-            MoneyTransferI mtt = factory.build(type);
+            //MoneyTranferProcessorFactory factory = new MoneyTranferProcessorFactory();
+            MoneyTransferI mtt = MoneyTranferProcessorFactory.build(type);
             mtt.transferMoney(amount);
         }
     }
-
-
-
-}
