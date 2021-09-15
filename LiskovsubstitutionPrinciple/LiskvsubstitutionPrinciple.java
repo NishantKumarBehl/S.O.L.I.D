@@ -3,6 +3,9 @@ package LiskovsubstitutionPrinciple;
 // Principle states that the objects of superclass shall be replaceable with objects of
 // its subclass without breaking the application
 
+// Recommendation is not look for IS-A relationship but the question
+// CAN A PARTICULAR TYPE BE SUBSTITUTED BY A PARTICULAR SUBTYPE
+
 // Violations - How do you spot
 // #1 Empty methods or Partially implemented interfaces that are not implementable in class that is extending base class
 // e.g @Override public void fly(int alt){ throw exception or do nothing}
