@@ -1,7 +1,7 @@
 package LiskovsubstitutionPrinciple;
 
-// Principle states that the subtype should be able to replace or substitute
-// the behaviour of the class, it is subtype of
+// Principle states that the objects of superclass shall be replaceable with objects of
+// its subclass without breaking the application
 
 // Violations - How do you spot
 // #1 Empty methods or Partially implemented interfaces that are not implementable in class that is extending base class
@@ -13,6 +13,54 @@ package LiskovsubstitutionPrinciple;
 
 
 public class LiskvsubstitutionPrinciple {
+        public static void main(String[] args) {
 
+            Account myfixtermDeposit = new FixedTermDeposit();
+            myfixtermDeposit.deposit(10000.000);
+            
+        }
+
+
+        // Design abstracted Account class to only handle deposit and the widrawl method
+        // shall be avaialbe in types of accounts(WidrawableAccount) that support widrawal along with deposit
+        // With this Widrawal service only interacts with Widrawable account
+
+        public abstract class Account{
+            protected abstract void deposit( Double amount);
+  
+        }
+
+        public abstract class WidrawableAccount{
+
+            protected abstract void deposit( Double amount);
+
+            protected abstract void widraw(Double amount);
     
+        }
+
+        public class WidrawlService {
+
+            private WidrawableAccount account;
+
+            public WidrawlService(WidrawableAccount account){
+                this.account = account;
+            }
+
+            public void widraw(Double amount){
+                account.widraw(amount);
+
+            }
+        }
+
+        public class FixedTermDeposit extends Account{
+
+            @Override
+            public void deposit(Double amount){
+                System.out.println("Amount deposit in FixedTermAccount");
+            }
+
+            
+        }
 }
+
+
