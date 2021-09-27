@@ -14,6 +14,8 @@ package LiskovsubstitutionPrinciple;
 //      Rectangle r = new sqaure() , r.setWidth(10), r. setHeight(20),r.area() will give wrong answer
 // #3 Type checking of class to implement certain behavior with forceful typecasting
 
+// Problem Statement: You have an Account that supports deposit and widrawl, now you have a requiremet to support new type
+// of account-FixedTermDeposit.. which obviously support only Deposit.. Implement the new feature in compliance to LSP
 
 import LiskovsubstitutionPrinciple.AbstractClass.Account;
 import LiskovsubstitutionPrinciple.Utils.FixedTermDeposit;
